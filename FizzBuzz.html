@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>FizzBuzz</title>
+		<style>
+			#submitHidden {
+				display: none;
+			}
+			footer > span {
+				margin-left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>
+				FizzBuzz
+			</h1>
+		</header>
+		<section>
+			<p>
+				Det här är en fizzbuzz webapp där du själv kan bestämma hur många number som ska fizzbuzzas och vilka divisionstal som ska buzzas respektive fuzzas.
+			</p>
+		</section>
+		<section>
+			<form>
+				<input type="number" id="loopNumber" placeholder="Loop tal" required><span>(alltså vart loopen ska sluta)</span><br>
+				<input type="number" id="firstDivisionNumber" placeholder="Första divisionstall" required><span>(det som ska ersättas med Fizz)</span><br>
+				<input type="number" id="secondDivisionNumber" placeholder="Andra divisionstal" required><span>(det som ska ersättas med Buzz)</span><br>
+				<button id="submitHidden">Go!</button>
+			</form>
+			<button id="submit">Go!</button>
+
+			<div>
+				<p id="fizzBuzzOutput">
+
+				</p>
+			</div>
+		</section>
+		<footer>
+			Copyright: 2015 <span>Webmaster: Miguel Ehrstand</span>
+		</footer>
+	</body>
+	<script type="text/javascript">
+
+		document.getElementById("submit").onclick = function() {
+			var loopNumberInput =  document.getElementById("loopNumber");
+			var firstDivisionNumberInput = document.getElementById("firstDivisionNumber");
+			var secondDivisionNumberInput = document.getElementById("secondDivisionNumber");
+			if (loopNumberInput.checkValidity() &&
+				firstDivisionNumberInput.checkValidity() &&
+				secondDivisionNumberInput.checkValidity()) {
+
+				
+				var fizzBuzzString = "";
+				document.getElementById("fizzBuzzOutput").innerHTML = "";
+
+				for(var i = 1; i <= loopNumberInput.value; i++) {
+					if (i%firstDivisionNumberInput.value == 0 && i%secondDivisionNumberInput.value == 0) {
+						fizzBuzzString += "FizzBuzz<br>";
+					}
+					else if(i%firstDivisionNumberInput.value == 0) {
+						//console.log("Fizz");
+						fizzBuzzString += "Fizz<br>";
+						//document.getElementById("fizzBuzzOutput").innerHTML += "Fizz<br>";
+					}
+					else if (i%secondDivisionNumberInput.value == 0) {
+						//console.log("Buzz");
+						fizzBuzzString += "Buzz<br>";
+					} else {
+						//console.log(i);
+						fizzBuzzString += i + "<br>";
+					}
+
+				}
+				//console.log(fizzBuzzString);
+				document.getElementById("fizzBuzzOutput").innerHTML = fizzBuzzString;
+			} else {
+				document.getElementById("submitHidden").click();
+			}
+		};
+		
+		
+	</script>
+</html>
